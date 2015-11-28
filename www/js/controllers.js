@@ -41,20 +41,23 @@ angular.module('stockDashbord.controllers', [])
   };
 })
 
-.controller('MyStocksCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'seconda volta', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 },
-    { title: 'terza volta', id: 7 }
-  ];
-})
+.controller('MyStocksCtrl', [ '$scope',
+  function($scope) {
 
-.controller('StockCtrl', function($scope, $stateParams) {
+    $scope.myStocksArray = [
+      {ticker: "AAPL"},
+      {ticker: "GOOG"},
+      {ticker: "MSFT"},
+      {ticker: "INTC"},
+      {ticker: "FB"},
+    ];
+}]
+)
 
-  $scope.dynamicViewTitleFromStateparams = $stateParams.id;
+.controller('StockCtrl', [ '$scope', '$stateParams', 
+  function($scope, $stateParams) {
 
-});
+  $scope.ticker = $stateParams.stockTicker;
+
+}]
+);
