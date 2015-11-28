@@ -76,6 +76,13 @@ angular.module('stockDashbord.controllers', [])
 
     promise.then(function(data){
       $scope.stockPriceData = data;
+
+      if (data.chg_percent >= 0 && data != null){
+        $scope.reactiveColor = {'background-color': '#33cd5f'};
+      }
+      else if(data.chg_percent < 0 && data != null){
+        $scope.reactiveColor = {'background-color': '#ef473a'};        
+      }
     });
   }
 
