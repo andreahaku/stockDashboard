@@ -1,0 +1,9 @@
+<ion-view view-title="My Stocks">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="arbitrary in playlists" ng-href="#/app/playlists/{{arbitrary.id}}">
+        test for id: {{arbitrary.id}} - {{arbitrary.title}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
