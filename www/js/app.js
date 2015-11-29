@@ -3,6 +3,7 @@ angular.module('stockDashbord', [
   'angular-cache',
   'nvd3',
   'nvChart',
+  'cb.x2js',
   'stockDashbord.controllers',
   'stockDashbord.services',
   'stockDashbord.filters',

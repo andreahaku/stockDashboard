@@ -53,8 +53,8 @@ angular.module('stockDashbord.controllers', [])
     ];
 }])
 
-.controller('StockCtrl', [ '$scope', '$stateParams', '$window', '$ionicPopup', 'stockDataService', 'dateService', 'chartDataService', 'notesService',
-  function($scope, $stateParams, $window, $ionicPopup, stockDataService, dateService, chartDataService, notesService) {
+.controller('StockCtrl', [ '$scope', '$stateParams', '$window', '$ionicPopup', 'stockDataService', 'dateService', 'chartDataService', 'notesService', 'newsService',
+  function($scope, $stateParams, $window, $ionicPopup, stockDataService, dateService, chartDataService, notesService, newsService) {
 
   $scope.ticker = $stateParams.stockTicker;
   $scope.chartView = 4;
@@ -67,8 +67,15 @@ angular.module('stockDashbord.controllers', [])
     getPriceData();
     getDetailData();
     getChartData();
+    getNews();
     $scope.stockNotes = notesService.getNotes($scope.ticker);
   });
+
+  $scope.openWindow = function(link){
+    //TODO
+    console.log('open window: ',link);
+  };
+
 
   $scope.chartViewFunc = function(n){
     $scope.chartView = n;
@@ -138,6 +145,17 @@ note.then(function(res) {
 });
 };
 
+
+function getNews(){
+
+  $scope.newsStories = [];
+
+  var promise = newsService.getNews($scope.ticker);
+
+  promise.then(function(data){
+    $scope.newsStories = data;
+  });
+}
 
   function getPriceData(){
     var promise = stockDataService.getPriceData($scope.ticker);
